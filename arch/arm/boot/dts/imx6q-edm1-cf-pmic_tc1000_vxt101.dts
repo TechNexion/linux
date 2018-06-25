@@ -1,0 +1,73 @@
+/*
+ * Copyright 2016 Technexion Ltd.
+ *
+ * Author: alvin.Chen <alvin.chen@technexion.com>
+ *         Po Cheng <po.chen@technexion.com>
+ *
+ * The code contained herein is licensed under the GNU General Public
+ * License. You may obtain a copy of the GNU General Public License
+ * Version 2 or later at the following locations:
+ *
+ * http://www.opensource.org/licenses/gpl-license.html
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+/dts-v1/;
+
+#include <dt-bindings/interrupt-controller/irq.h>
+#include "imx6q.dtsi"
+#include "imx6qdl-edm1-cf-pmic.dtsi"
+#include "baseboard_edm1_tc1000.dtsi"
+
+/ {
+	model = "TechNexion EDM1-IMX6PLUS Quad/Dual and TC1000 baseboard";
+	compatible = "fsl,edm1-cf-imx6q", "fsl,imx6q";
+};
+
+&ldb {
+	lvds-channel@0 {
+		crtc = "ipu2-di0";
+	};
+};
+
+&mxcfb1 {
+	status = "okay";
+};
+
+&mxcfb2 {
+	status = "okay";
+};
+
+#if 0
+&mxcfb3 {
+	status = "okay";
+};
+
+&mxcfb4 {
+	status = "okay";
+};
+#endif
+
+&sata {
+	status = "okay";
+};
+
+&ldb {
+	lvds-channel@0 {
+
+		display-timings {
+			native-mode = <&timing0>;
+			timing0: hj070na {
+				clock-frequency = <71100000>;
+				hactive = <1280>;
+				vactive = <800>;
+				hback-porch = <40>;
+				hfront-porch = <40>;
+				vback-porch = <10>;
+				vfront-porch = <3>;
+				hsync-len = <80>;
+				vsync-len = <10>;
+			};
+		};
+	};
+};

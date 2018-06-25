@@ -291,6 +291,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6dl-edm1-cf_tc0700.dtb \
 	imx6dl-edm1-cf-pmic_tc0700.dtb \
 	imx6dl-edm1-cf-pmic_tc1000.dtb \
+	imx6dl-edm1-cf-pmic_tc1000_vxt101.dtb \
 	imx6dl-edm2-cf-pmic_gremlin.dtb \
 	imx6dl-pico_dwarf.dtb \
 	imx6dl-pico_hobbit.dtb \
@@ -334,6 +335,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6qp-edm1-cf-pmic_fairy.dtb \
 	imx6qp-edm1-cf-pmic_tc0700.dtb \
 	imx6qp-edm1-cf-pmic_tc1000.dtb \
+	imx6qp-edm1-cf-pmic_tc1000_vxt101.dtb \
 	imx6qp-wandboard-revd1.dtb \
 	imx6q-sabrelite.dtb \
 	imx6q-sabresd.dtb \
@@ -357,6 +359,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6q-edm1-cf_tc0700.dtb \
 	imx6q-edm1-cf-pmic_tc0700.dtb \
 	imx6q-edm1-cf-pmic_tc1000.dtb \
+	imx6q-edm1-cf-pmic_tc1000_vxt101.dtb \
 	imx6q-edm1-cf-pmic_gnome.dtb \
 	imx6q-edm2-cf-pmic_gremlin.dtb \
 	imx6q-pico_dwarf.dtb \
