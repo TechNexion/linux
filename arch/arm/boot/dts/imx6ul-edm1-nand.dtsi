@@ -21,8 +21,8 @@
 #define EDM_EXT_GPIO_P259 pca9555 12
 #define EDM_EXT_GPIO_P260 pca9555 13
 #define EDM_EXT_GPIO_P261 gpio5 0
-#define EDM_EXT_GPIO_P262 pca9555 15
-#define EDM_EXT_GPIO_P264 pca9555 14
+#define EDM_EXT_GPIO_P262 pca9555 14
+#define EDM_EXT_GPIO_P264 pca9555 15
 #define EDM_EXT_GPIO_P265 gpio1 5
 #define EDM_EXT_GPIO_P266 gpio1 1
 
