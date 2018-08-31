@@ -20,7 +20,7 @@
 #define PICO_EXT_GPIO_EXP3 pca9554 3
 #define PICO_EXT_GPIO_EXP4 pca9554 4
 #define PICO_EXT_GPIO_EXP5 pca9554 5
-#define PICO_EXT_GPIO_EXP6 gpio5 30
+#define PICO_EXT_GPIO_EXP6 gpio5 31
 #define PICO_EXT_GPIO_EXP7 gpio5 27
 
 #define PICO_EXT_GPIO_P24 gpio5 19
@@ -378,7 +378,7 @@
 
 		pinctrl_ext_gpio_ft5606_touch_irq_dwarf: ext-gpio-ft5606-touch-irq-dwarf {
 			fsl,pins = <
-				MX6QDL_PAD_CSI0_DAT12__GPIO5_IO30  0x4001b0b5 /* capacitive touch irq for dwarf baseboard */
+				MX6QDL_PAD_CSI0_DAT13__GPIO5_IO31  0x4001b0b5 /* capacitive touch irq for dwarf baseboard */
 			>;
 		};
 
