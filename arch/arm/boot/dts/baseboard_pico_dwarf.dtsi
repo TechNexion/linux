@@ -113,8 +113,8 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <PICO_EXT_FT5X06_IOMUX_DWARF>; /* Touch IRQ and Touch Reset */
 #endif
-		interrupt-parent = <&GPIO_BANK(PICO_EXT_GPIO_EXP6)>; /* GPIO_EXT6 */
-		interrupts = <GPIO_NO(PICO_EXT_GPIO_EXP6) 0>;
+		interrupt-parent = <&GPIO_BANK(PICO_EXT_GPIO_P44)>; /* GPIO_EXT6 */
+		interrupts = <GPIO_NO(PICO_EXT_GPIO_P44) 0>;
 		reset-gpios = <&PICO_EXT_GPIO_EXP4 GPIO_ACTIVE_LOW>; /* GPIO_EXT4 */
 		touchscreen-size-x = <800>;
 		touchscreen-size-y = <480>;
