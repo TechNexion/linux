@@ -25,6 +25,7 @@
 #define EDM_EXT_GPIO_P263 gpio1 4
 #define EDM_EXT_GPIO_P264 gpio7 8
 #define EDM_EXT_LVDS_PWR  gpio5 31
+#define EDM_EXT_USB_HUB_RESET gpio7 12
 
 #define EDM_EXT_GPIO_EXP0 pca9555 0
 #define EDM_EXT_GPIO_EXP1 pca9555 1
@@ -443,6 +444,7 @@
 				MX6QDL_PAD_GPIO_3__CCM_CLKO2		0x000b0		/* ov5640 mclk */
 				MX6QDL_PAD_EIM_D29__GPIO3_IO29   	0x1f0b1		/* RGMII PHY reset */
 				MX6QDL_PAD_ENET_RXD0__XTALOSC_REF_CLK_32K	0x000b0	/* wifi LPO 32K Hz clock */
+				MX6QDL_PAD_GPIO_17__GPIO7_IO12		0x4001b0b5  /* USB Hub reset*/
 			>;
 		};
 
