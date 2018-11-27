@@ -17,6 +17,7 @@ Optional properties:
 - initially-in-reset: boolean. If not set, the initial state should be a
                       deasserted reset line. If this property exists, the
                       reset line should be kept in reset.
+- auto: boolean property - if present a reset will be done on boot
 
 example:
 

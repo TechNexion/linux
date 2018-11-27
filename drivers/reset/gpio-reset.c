@@ -138,6 +138,9 @@ static int gpio_reset_probe(struct platform_device *pdev)
 	drvdata->rcdev.of_xlate = of_gpio_reset_xlate;
 	reset_controller_register(&drvdata->rcdev);
 
+	if (of_property_read_bool(np, "auto"))
+		gpio_reset(&drvdata->rcdev, 0);
+
 	return 0;
 }
 
