@@ -72,6 +72,15 @@
         fsl,no-audmux = "true";
 #endif
 	};
+
+#ifdef EDM_EXT_USB_HUB_RESET
+	usb_hub_reset: usb-hub-reset {
+		compatible = "gpio-reset";
+		reset-gpios = <&EDM_EXT_USB_HUB_RESET GPIO_ACTIVE_LOW>;
+		reset-delay-us = <1000>;
+		auto;
+	};
+#endif
 };
 
 &EDM1_FAIRY_I2C1 {
