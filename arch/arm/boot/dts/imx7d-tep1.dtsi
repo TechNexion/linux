@@ -107,16 +107,6 @@
 
 	gpio-edm {
 		compatible = "gpio-edm";
-		gpio_p98 {
-			label = "PCIE_SWITCH_1";
-			gpios = <&gpio4 2 0>;
-			dir   = "out";
-		};
-		gpio_p99 {
-			label = "PCIE_SWITCH_2";
-			gpios = <&gpio4 3 0>;
-			dir   = "out";
-		};
 		gpio_p256 {
 			label = "GPIO_PORT1_IO1";
 			gpios = <&gpio5 13 0>;
@@ -331,21 +321,17 @@
 			>;
 		};
 
+		pinctrl_uart2: uart2grp {
+			fsl,pins = <
+				MX7D_PAD_UART2_TX_DATA__UART2_DCE_TX	0x79
+				MX7D_PAD_UART2_RX_DATA__UART2_DCE_RX	0x79
+			>;
+		};
+
 		pinctrl_uart3: uart3grp {
 			fsl,pins = <
 				MX7D_PAD_UART3_TX_DATA__UART3_DCE_TX	0x79
 				MX7D_PAD_UART3_RX_DATA__UART3_DCE_RX	0x79
-				MX7D_PAD_UART3_RTS_B__UART3_DCE_RTS	0x79
-				MX7D_PAD_UART3_CTS_B__UART3_DCE_CTS	0x79
-			>;
-		};
-
-		pinctrl_uart7: uar7grp {
-			fsl,pins = <
-				MX7D_PAD_EPDC_DATA12__UART7_DCE_RX	0x79
-				MX7D_PAD_EPDC_DATA13__UART7_DCE_TX	0x79
-				MX7D_PAD_EPDC_DATA14__UART7_DCE_RTS	0x79
-				MX7D_PAD_EPDC_DATA15__UART7_DCE_CTS	0x79
 			>;
 		};
 
@@ -462,8 +448,6 @@
 				MX7D_PAD_SAI2_TX_DATA__GPIO6_IO22 	0x15
 				MX7D_PAD_I2C4_SDA__GPIO4_IO15		0x15	/* fec power */
 				MX7D_PAD_SAI2_RX_DATA__GPIO6_IO21	0x15	/* M2 power */
-				MX7D_PAD_UART2_RX_DATA__GPIO4_IO2	0x15
-				MX7D_PAD_UART2_TX_DATA__GPIO4_IO3	0x15
 			>;
 		};
 
@@ -564,21 +548,19 @@
 	status = "okay";
 };
 
+&uart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart2>;
+	assigned-clocks = <&clks IMX7D_UART2_ROOT_SRC>;
+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
+	status = "okay";
+};
+
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart3>;
 	assigned-clocks = <&clks IMX7D_UART3_ROOT_SRC>;
-	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
-	uart-has-rtscts;
-	status = "okay";
-};
-
-&uart7 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart7>;
-	assigned-clocks = <&clks IMX7D_UART7_ROOT_SRC>;
-	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
-	fsl,uart-has-rtscts;
+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
 	status = "okay";
 };
 
