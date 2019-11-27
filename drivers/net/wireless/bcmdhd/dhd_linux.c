@@ -4312,13 +4312,18 @@ int dhd_get_fw_mode(dhd_info_t *dhdinfo)
 #define BCM4339_FIRMWARE_NAME	"/lib/firmware/brcm/fw_bcm4339a0_ag.bin"
 #define BCM4339_AP_MODE_FIRMWARE_NAME	"/lib/firmware/brcm/fw_bcm4339a0_ag_apsta.bin"
 #define BCM4339_NVRAM_NAME	"/lib/firmware/brcm/nvram_ap6335.txt"
-/* Ampak AP6212 */
-#define BCM43430_FIRMWARE_NAME	"/lib/firmware/brcm/fw_bcm43438a0.bin"
-#define BCM43430_AP_MODE_FIRMWARE_NAME	"/lib/firmware/brcm/fw_bcm43438a0_apsta.bin"
-#define BCM43430_NVRAM_NAME	"/lib/firmware/brcm/nvram_ap6212.txt"
+/* Ampak AP6212 rev A0 */
+#define BCM43430A0_FIRMWARE_NAME       "/lib/firmware/brcm/fw_bcm43438a0.bin"
+#define BCM43430A0_AP_MODE_FIRMWARE_NAME       "/lib/firmware/brcm/fw_bcm43438a0_apsta.bin"
+#define BCM43430A0_NVRAM_NAME  "/lib/firmware/brcm/nvram_ap6212.txt"
+/* Ampak AP6212 rev A1 */
+#define BCM43430A1_FIRMWARE_NAME       "/lib/firmware/brcm/fw_bcm43438a1.bin"
+#define BCM43430A1_AP_MODE_FIRMWARE_NAME       "/lib/firmware/brcm/fw_bcm43438a1_apsta.bin"
+#define BCM43430A1_NVRAM_NAME  "/lib/firmware/brcm/nvram_ap6212a.txt"
 
 struct dhd_firmware_names {
 	uint chipid;
+	uint revid;
 	const char *bin;
 	const char *ap_bin;
 	const char *nv;
@@ -4329,9 +4334,10 @@ struct dhd_firmware_names {
 
 
 static const struct dhd_firmware_names dhd_fwname_data[] = {
-{ BCM4330_CHIP_ID, DHD_FIRMWARE_NVRAM(BCM4330) },
-{ BCM4339_CHIP_ID, DHD_FIRMWARE_NVRAM(BCM4339) },
-{ BCM43430_CHIP_ID, DHD_FIRMWARE_NVRAM(BCM43430) }
+{ BCM4330_CHIP_ID, 0xFF, DHD_FIRMWARE_NVRAM(BCM4330) },
+{ BCM4339_CHIP_ID, 0xFF, DHD_FIRMWARE_NVRAM(BCM4339) },
+{ BCM43430_CHIP_ID, 0, DHD_FIRMWARE_NVRAM(BCM43430A0) },
+{ BCM43430_CHIP_ID, 1, DHD_FIRMWARE_NVRAM(BCM43430A1) }
 };
 
 bool dhd_update_fw_nv_path(dhd_info_t *dhdinfo)
@@ -4365,19 +4371,22 @@ bool dhd_update_fw_nv_path(dhd_info_t *dhdinfo)
 #endif /* CONFIG_BCMDHD_NVRAM_PATH */
 	}
 
-	/* set firmware path by chip id */
+	/* set firmware path by chip id and revision */
 	for (i = 0; i < ARRAY_SIZE(dhd_fwname_data); i++) {
 		if (dhd_fwname_data[i].chipid == dhd_bus_chip_id(dhdp)) {
-			if (op_mode == DHD_FLAG_HOSTAP_MODE)
-				fw = dhd_fwname_data[i].ap_bin;
-			else
-				fw = dhd_fwname_data[i].bin;
+			if ( (dhd_fwname_data[i].revid == 0xFF) || \
+				(dhd_fwname_data[i].revid == dhd_bus_chiprev_id(dhdp)) ) {
 
-			nv = dhd_fwname_data[i].nv;
-			break;
+				if (op_mode == DHD_FLAG_HOSTAP_MODE)
+					fw = dhd_fwname_data[i].ap_bin;
+				else
+					fw = dhd_fwname_data[i].bin;
+
+				nv = dhd_fwname_data[i].nv;
+				break;
+			}
 		}
 	}
-
 
 	/* check if we need to initialize the path */
 	if (dhdinfo->fw_path[0] == '\0') {
